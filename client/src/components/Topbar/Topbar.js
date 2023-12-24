@@ -14,7 +14,7 @@ function Topbar() {
   const [inp, setinp] = useState();
   const [togglebtn,settogglebtn]=useState("HomePage")
   const [navpath,setnavpath] = useState("/");
-  const [usersList,setusersList] = useState("/");
+  const [usersList,setusersList] = useState("");
 
   const handletoggle = ()=>{
     if(togglebtn==="HomePage") {

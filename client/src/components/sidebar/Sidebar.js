@@ -58,10 +58,12 @@ function Sidebar() {
         <button className={sb.sidebarButton}>Show more</button>
         <hr className={sb.sidebarHr} />
         <ul className={sb.sidebarFriendList}>
-          {Users.map((u)=>(
+          {/* {Users.map((u)=>(
             <CloseFriend key={u.id} user={u}>
             </CloseFriend>
-          ))}
+          ))} */}
+          <CloseFriend>
+            </CloseFriend>
         </ul>
       </div>
     </div>
