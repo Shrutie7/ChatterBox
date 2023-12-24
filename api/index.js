@@ -59,6 +59,6 @@ app.use("/api/posts",postRoute)
 
 
 // means our app is listening on port 8800 here our server code is running
-app.listen(8800,()=>{
+app.listen(process.env.PORT || 8800,()=>{
     console.log("Backend Server is runnin here!")
 })

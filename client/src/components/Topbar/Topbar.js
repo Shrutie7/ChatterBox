@@ -8,23 +8,53 @@ import axios from "axios";
 
 function Topbar() {
   const { user, dispatch } = useContext(AuthContext);
+
+  console.log(user)
   const nav = useNavigate();
   const [inp, setinp] = useState();
   const [togglebtn,settogglebtn]=useState("HomePage")
-  const [navpath,setnavpath] = useState("/")
+  const [navpath,setnavpath] = useState("/");
+  const [usersList,setusersList] = useState("/");
 
   const handletoggle = ()=>{
     if(togglebtn==="HomePage") {
     settogglebtn("Timeline");
+    nav(`/profile/${user?.username}`)
   }
   else{
     settogglebtn("HomePage");
+    nav("/")
   }
 }
-  const getUsers = async () => {
-    const res = await axios.get("/users/" + inp, { userId: inp });
+  const getUsersList = async () => {
+    const res = await axios.get("/users/all/" + inp);
     console.log(res);
+    setusersList([...res.data])
   };
+
+
+  useEffect(()=>{
+    getUsersList();
+  },[])
+  const [filteredrest, setfilteredrest] = useState([]);
+
+  const searchfun = ()=>{
+    let filt = usersList.filter(
+      (res) =>
+        JSON.stringify(res)
+          .toLowerCase()
+          .includes(inp.toLowerCase())
+
+      // res.info.name.toLowerCase().includes(ressearch.toLowerCase())
+    );
+
+console.log(filt)
+    setfilteredrest([...filt]);
+  }
+
+
+
+
   const handleClick = () => {
     logoutCall(dispatch);
     nav("/login");
@@ -40,7 +70,7 @@ function Topbar() {
       </div>
       <div className={tp.topbarCenter}>
         <div className={tp.searchbar}>
-          <Search className={tp.searchIcon} onClick={getUsers} />
+          <Search className={tp.searchIcon} onClick={()=>searchfun()} />
           <input
             placeholder="Search for friends,posts,or any videos"
             value={inp}
@@ -51,9 +81,9 @@ function Topbar() {
       </div>
       <div className={tp.topbarRight}>
         <div className={tp.topbarLinks}>
-          <Link to={togglebtn === "HomePage"? navpath : `/profile/${user?.username}` } style={{ textDecoration: "none" }}>
-            <span className={tp.topbarLink} onClick={()=>handletoggle()}>{togglebtn}</span>
-          </Link>
+          {/* <Link to={togglebtn === "HomePage"? navpath : `/profile/${user?.username}` } style={{ textDecoration: "none" }}> */}
+            <span className={tp.topbarLink} onClick={()=>handletoggle()}>{togglebtn==="HomePage"?"HomePage":"Timeline"}</span>
+          {/* </Link> */}
           {/* <Link
             to={`/profile/${user?.username}`}
             style={{ textDecoration: "none" }}

@@ -10,6 +10,8 @@ function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const[user,setUser]=useState({});
+
+  console.log(user)
   const params = useParams();
   const username = params.username
   console.log(params.username) //gives object with username key and its value in it as we pass in App.js in routing of /profile/:username 
@@ -47,7 +49,7 @@ function Profile() {
             </div>
 
             <div className={pr.profileInfo}>
-              <h4 className={pr.profileInfoName}>{user.username}</h4>
+              <h4 className={pr.profileInfoName}>{params.username}</h4>
               <span className={pr.profileInfoDesc}>{user.desc}</span>
             </div>
           </div>
