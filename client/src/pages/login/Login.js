@@ -25,9 +25,9 @@ function Login() {
     <div className={lo.login}>
       <div className={lo.loginWrapper}>
         <div className={lo.loginLeft}>
-          <h3 className={lo.loginLogo}>ShruSocial</h3>
+          <h3 className={lo.loginLogo}>Chatterbox</h3>
           <span className={lo.loginDesc}>
-            Connect with friends and the world around you on ShruSocial.
+            Connect with friends and the world around you on Chatterbox.
           </span>
         </div>
         <div className={lo.loginRight}>
