@@ -1,7 +1,9 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import lo from "./Register.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { loginCall } from "../../ApiCalls";
+import { AuthContext } from "../../context/AuthContext";
 
 function Register() {
   const usernameref = useRef();
@@ -10,6 +12,15 @@ function Register() {
   const confirmpasswordref = useRef();
   const nav = useNavigate();
 
+  const { user, isFetching, error, dispatch, errormsg } =
+    useContext(AuthContext);
+  const handlelogin = (m,n)=>{
+    loginCall(
+      { email: m, password: n },
+      dispatch
+    );
+
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     // check if confirmpassword and password are same exactly!!
@@ -26,7 +37,8 @@ function Register() {
       try {
         await axios.post("/auth/register", user);
         //  navigate user to login page
-        nav("/login");
+        // nav("/login");
+        handlelogin(emailref.current.value,passwordref.current.value)
       } catch (error) {
         console.log(error);
       }
@@ -76,10 +88,10 @@ function Register() {
               Sign up
             </button>
 
-<div className={lo.btncontainers}>
-<button className={lo.loginRegisterButton} onClick={()=>nav("/")}>Log into Account</button>
-            <button className={lo.loginRegisterButton} onClick={()=>nav("/login")}>Sign In</button>
-</div>
+
+<button className={lo.loginRegisterButton} onClick={()=>nav("/login")}>Log into Account</button>
+     
+
 
           </form>
         </div>

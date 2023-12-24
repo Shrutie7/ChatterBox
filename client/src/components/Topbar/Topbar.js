@@ -10,7 +10,17 @@ function Topbar() {
   const { user, dispatch } = useContext(AuthContext);
   const nav = useNavigate();
   const [inp, setinp] = useState();
+  const [togglebtn,settogglebtn]=useState("HomePage")
+  const [navpath,setnavpath] = useState("/")
 
+  const handletoggle = ()=>{
+    if(togglebtn==="HomePage") {
+    settogglebtn("Timeline");
+  }
+  else{
+    settogglebtn("HomePage");
+  }
+}
   const getUsers = async () => {
     const res = await axios.get("/users/" + inp, { userId: inp });
     console.log(res);
@@ -41,15 +51,15 @@ function Topbar() {
       </div>
       <div className={tp.topbarRight}>
         <div className={tp.topbarLinks}>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <span className={tp.topbarLink}>Homepage</span>
+          <Link to={togglebtn === "HomePage"? navpath : `/profile/${user?.username}` } style={{ textDecoration: "none" }}>
+            <span className={tp.topbarLink} onClick={()=>handletoggle()}>{togglebtn}</span>
           </Link>
-          <Link
+          {/* <Link
             to={`/profile/${user?.username}`}
             style={{ textDecoration: "none" }}
           >
             <span className={tp.topbarLink}>Timeline</span>
-          </Link>
+          </Link> */}
         </div>
         <div className={tp.topbarIcons}>
           <div className={tp.topbarIconItem}>
@@ -76,7 +86,7 @@ function Topbar() {
             className={tp.topbarImg}
           />
         </Link>
-        <span className="topbarLink" onClick={handleClick}>
+        <span className={tp.topbarLink} onClick={handleClick}>
           Sign out
         </span>
       </div>

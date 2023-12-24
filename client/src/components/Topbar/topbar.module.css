@@ -7,6 +7,7 @@
     /* center items vertically with align-items */
     position: sticky;
     top:0;
+    border-radius: 15px;
     /* even if we scroll the page this stays on top all times */
 z-index: 9999;
 
@@ -60,9 +61,13 @@ z-index: 9999;
 }
 .topbarLink{
     margin-right:10px;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     color: #fff;
+    
+}
+.topbarLink:hover{
+    text-decoration: underline;
 }
 .topbarIcons{
     display: flex;
