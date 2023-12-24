@@ -36,9 +36,9 @@ function Register() {
     <div className={lo.login}>
       <div className={lo.loginWrapper}>
         <div className={lo.loginLeft}>
-          <h3 className={lo.loginLogo}>ShruSocial</h3>
+          <h3 className={lo.loginLogo}>ChatterBox</h3>
           <span className={lo.loginDesc}>
-            Connect with friends and the world around you on ShruSocial.
+            Connect with friends and the world around you on ChatterBox.
           </span>
         </div>
         <div className={lo.loginRight}>
@@ -76,7 +76,11 @@ function Register() {
               Sign up
             </button>
 
-            <button className={lo.loginRegisterButton} onClick={nav("/login")}>Log into Account</button>
+<div className={lo.btncontainers}>
+<button className={lo.loginRegisterButton} onClick={()=>nav("/")}>Log into Account</button>
+            <button className={lo.loginRegisterButton} onClick={()=>nav("/login")}>Sign In</button>
+</div>
+
           </form>
         </div>
       </div>

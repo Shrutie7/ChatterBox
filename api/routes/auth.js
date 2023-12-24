@@ -59,7 +59,7 @@ router.post("/login", async (req, res) => {
 
     // if there is no user like that which is send in request in postman send error
     if(!user){
-      res.status(404).json("user not found with given email id");
+     return res.status(404).json({message:"user not found with given email id"});
     }
 
     // checking password also
@@ -68,7 +68,7 @@ router.post("/login", async (req, res) => {
       user.password
     );
     if(!validPassword){
-      res.status(400).json("user not found with given password");
+      return res.status(400).json({message:"user not found with given password"});
     }
 
 
@@ -76,7 +76,7 @@ router.post("/login", async (req, res) => {
     return res.status(200).json(user);
   } catch (error) {
     console.log(error)
-    res.status(500).json(error);
+  //  return res.status(500).json({message:error});
   }
 });
 
