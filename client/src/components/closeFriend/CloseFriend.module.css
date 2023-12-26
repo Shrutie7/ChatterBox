@@ -94,13 +94,12 @@
 }
 
 .btn{
-    float: right;
-    width: var(--xsmall);
+    width: var(--normal);
     height: var(--contheight);
     border-radius: var(--borderradiusthin);
-    outline: var(--bordernormal) !important;
-    outline-color: var(--color1) !important;
-    outline-style: solid !important;
+    outline: var(--bordernormal) ;
+    outline-color: var(--color1);
+    outline-style: solid ;
     color: var(--color1);
     background-color: var(--color7);
     font-size: var(--font5);
