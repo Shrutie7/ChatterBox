@@ -62,3 +62,16 @@ app.use("/api/posts",postRoute)
 app.listen(process.env.PORT || 8800,()=>{
     console.log("Backend Server is runnin here!")
 })
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+  
+    // render the error page
+    console.error(err);
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });

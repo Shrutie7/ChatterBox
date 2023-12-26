@@ -4,6 +4,7 @@
   /* calculate height bcoz topbar is 50px */
   /* background-color: red; */
   overflow-y: scroll;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
   /* to hold the sidebar so that empty gap is not coming give position sticky */
   position: sticky;
@@ -43,6 +44,8 @@ background-color: #f1f1f1;
     border:none;
     font-weight: 500;
     border-radius:5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
     
 }
 .sidebarHr{

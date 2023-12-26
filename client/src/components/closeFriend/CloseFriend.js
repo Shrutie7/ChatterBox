@@ -24,16 +24,23 @@ function CloseFriend() {
 
   return (
     <div>
-      {/* <li className={cf.sidebarFriend}> */}
+   
+   <div className={cf.header}>Find Users to follow</div>
 
       {usersList?.map((user) => (
         <li className={cf.sidebarFriend}>
-          <img
+        <div className={cf.sidebarFriend1}>
+        <img
             className={cf.sidebarFriendImg}
             src={user.profilePicture ? PF + user.profilePicture: noavatar}
             alt=""
           />
-          <span className={cf.sidebarFriendName}>{user.username}</span>
+          <div className={cf.sidebarFriendName}>{user.username}</div>
+        </div>
+          <div className={cf.btncon}>
+          <button className={cf.btn}>Follow</button>
+          </div>
+    
         </li>
       ))}
 

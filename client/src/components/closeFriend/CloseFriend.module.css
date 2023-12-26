@@ -1,7 +1,83 @@
+:root {
+    --font1: 18px;
+    --font2: 20px;
+    --font3: 24px;
+    --font4: 26px;
+    --font5: 14px;
+    --font6: 48px;
+    --font7: 16px;
+    --font8: 28px;
+    --font9: 22px;
+    --font10: 30px;
+    --font11: 40px;
+    --normal: 100px;
+    --small: 80px;
+    --xsmall: 60px;
+    --large: 140px;
+    --xlarge: 200px;
+    --contheight: 34px;
+    --borderthin: 1px;
+    --bordernormal: 2px;
+    --borderthick: 4px;
+    --borderradiusthin: 4px;
+    --borderradiusnormal: 5px;
+    --borderradiusthick: 8px;
+    --fontfamily: "Segoe UI";
+    --fontweightnormal: 500;
+    --borderradiusTable: 10px;
+    --tableHeight: 58px;
+    --tableCellHeight: 42px;
+    --fontweightsemibold: 550;
+    --fontweightbold: 600;
+    --inputnormal: 180px;
+    --inputsmall: 140px;
+    --inputxsmall: 80px;
+    --inputexlarge:40px;
+    --inputlarge: 280px;
+    --inputxlarge: 392px;
+    --fontItalic: "italic";
+    --inputHeight: 30px;
+    --inputmaxHeight:64px;
+    --color1: #0d4459;
+    --color2: #f2c230;
+    --color3: #b7d6f2;
+    --color4: linear-gradient(to bottom, #b7d6f2, #2975a6);
+    --color5: #dbe2ea;
+    --color6: #ebf4f8;
+    --color7: #ffffff;
+    --color8: #f2ac57;
+    --color9: #14a38b;
+    --color10: #ff7171;
+    --color11: #73a9d8;
+    --color12: #2975a6;
+    --color13: #cccccc;
+    --color14: #e5947d;
+    --color15: #48627b;
+    --color16: #f5a05f;
+    --color17: #ffda77;
+    --color18: #789a3e;
+    --color19: #f2da99;
+    --color20: #49565b;
+    --color21: #fbdbfc;
+    --color22: #a6e7fc;
+    --color23: #e5f8ce;
+    --color24: #ffe6c5;
+    --color25: #fbe4a1;
+  }
+
+
 .sidebarFriend{
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    justify-content: space-between;
+}
+.sidebarFriend1{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    justify-content: space-between;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .sidebarFriendImg{
     height:32px;
@@ -10,3 +86,32 @@
     object-fit: cover;
     margin-right: 10px;;
 }
+.header{
+    text-align: left;
+    margin-bottom:10px;
+    font-size: large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn{
+    float: right;
+    width: var(--xsmall);
+    height: var(--contheight);
+    border-radius: var(--borderradiusthin);
+    outline: var(--bordernormal) !important;
+    outline-color: var(--color1) !important;
+    outline-style: solid !important;
+    color: var(--color1);
+    background-color: var(--color7);
+    font-size: var(--font5);
+    font-family: var(--fontfamily);
+    font-weight: var(--fontweightsemibold);
+    cursor: pointer;
+}
+.btn:hover {
+    color: var(--color7);
+    background-color: var(--color1);
+    outline: var(--bordernormal);
+    outline-color: var(--color1);
+    outline-style: solid;
+  }

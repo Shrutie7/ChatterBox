@@ -5,55 +5,47 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { logoutCall } from "../../ApiCalls";
 import axios from "axios";
+import Searchfriends from "../searchfriends/Searchfriends";
 
 function Topbar() {
   const { user, dispatch } = useContext(AuthContext);
 
-  console.log(user)
+  const [showsearchfrnd, setshowsearchfrnd] = useState(false);
+  console.log(user);
   const nav = useNavigate();
   const [inp, setinp] = useState();
-  const [togglebtn,settogglebtn]=useState("HomePage")
-  const [navpath,setnavpath] = useState("/");
-  const [usersList,setusersList] = useState("");
+  const [togglebtn, settogglebtn] = useState("HomePage");
+  const [navpath, setnavpath] = useState("/");
+  const [usersList, setusersList] = useState("");
 
-  const handletoggle = ()=>{
-    if(togglebtn==="HomePage") {
-    settogglebtn("Timeline");
-    nav(`/profile/${user?.username}`)
-  }
-  else{
-    settogglebtn("HomePage");
-    nav("/")
-  }
-}
-  const getUsersList = async () => {
-    const res = await axios.get("/users/all/" + inp);
-    console.log(res);
-    setusersList([...res.data])
+  const handletoggle = () => {
+    if (togglebtn === "HomePage") {
+      settogglebtn("Timeline");
+      nav(`/profile/${user?.username}`);
+    } else {
+      settogglebtn("HomePage");
+      nav("/");
+    }
   };
+  const getUsersList = async () => {};
 
-
-  useEffect(()=>{
-    getUsersList();
-  },[])
+  // useEffect(()=>{
+  //   getUsersList();
+  // },[])
   const [filteredrest, setfilteredrest] = useState([]);
 
-  const searchfun = ()=>{
-    let filt = usersList.filter(
-      (res) =>
-        JSON.stringify(res)
-          .toLowerCase()
-          .includes(inp.toLowerCase())
-
-      // res.info.name.toLowerCase().includes(ressearch.toLowerCase())
+  const searchfun = async () => {
+    const res = await axios.get("/users/all/" + inp);
+    console.log(res);
+    // setusersList([...res.data]);
+    let filt = res.data.filter((resp) =>
+      JSON.stringify(resp).toLowerCase().includes(inp.toLowerCase())
     );
 
-console.log(filt)
+    console.log(filt);
     setfilteredrest([...filt]);
-  }
-
-
-
+    setshowsearchfrnd(true);
+  };
 
   const handleClick = () => {
     logoutCall(dispatch);
@@ -70,19 +62,26 @@ console.log(filt)
       </div>
       <div className={tp.topbarCenter}>
         <div className={tp.searchbar}>
-          <Search className={tp.searchIcon} onClick={()=>searchfun()} />
+          <Search className={tp.searchIcon} onClick={() => searchfun()} />
           <input
             placeholder="Search for friends,posts,or any videos"
             value={inp}
             onChange={(e) => setinp(e.target.value)}
             className={tp.searchinput}
+            onKeyUp={(e) => {
+              if (e.key === "Enter" && inp) {
+                searchfun();
+              }
+            }}
           />
         </div>
       </div>
       <div className={tp.topbarRight}>
         <div className={tp.topbarLinks}>
           {/* <Link to={togglebtn === "HomePage"? navpath : `/profile/${user?.username}` } style={{ textDecoration: "none" }}> */}
-            <span className={tp.topbarLink} onClick={()=>handletoggle()}>{togglebtn==="HomePage"?"HomePage":"Timeline"}</span>
+          <span className={tp.topbarLink} onClick={() => handletoggle()}>
+            {togglebtn === "HomePage" ? "HomePage" : "Timeline"}
+          </span>
           {/* </Link> */}
           {/* <Link
             to={`/profile/${user?.username}`}
@@ -116,10 +115,16 @@ console.log(filt)
             className={tp.topbarImg}
           />
         </Link>
+        <div className={tp.username}>{user.username}</div>
         <span className={tp.topbarLink} onClick={handleClick}>
           Sign out
         </span>
       </div>
+      {showsearchfrnd && inp !== "" ? (
+        <Searchfriends filteredrest={filteredrest} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

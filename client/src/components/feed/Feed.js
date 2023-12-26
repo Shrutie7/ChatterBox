@@ -32,6 +32,7 @@ function Feed({ username }) {
     <div className={fd.feed}>
       <div className={fd.feedWrapper}>
         {(username===user?.username)|| !username ? <Share setreload={setreload}></Share>:<></>}
+        {console.log(posts)}
         {posts.map((d) => (
           <Post key={d._id} post={d} />
         ))}

@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { loginCall } from "../../ApiCalls";
 import { AuthContext } from "../../context/AuthContext";
+import { CircularProgress } from "@material-ui/core";
 
 function Register() {
   const usernameref = useRef();
@@ -84,9 +85,16 @@ function Register() {
               ref={confirmpasswordref}
               className={lo.loginInput}
             ></input>
-            <button className={lo.loginButton} type="submit">
+<button className={lo.loginButton}>
+{isFetching ? (
+                <CircularProgress color="white" size="20px" />
+              ) : (
+                "Sign up"
+              )}
+              </button>
+            {/* <button className={lo.loginButton} type="submit">
               Sign up
-            </button>
+            </button> */}
 
 
 <button className={lo.loginRegisterButton} onClick={()=>nav("/login")}>Log into Account</button>

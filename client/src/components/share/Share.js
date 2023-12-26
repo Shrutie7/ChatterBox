@@ -67,7 +67,7 @@ setFile(null)
             alt=""
           />
           <input
-            placeholder={`Whats in your mind ${user.username} ?`}
+            placeholder={`Whats on your mind ${user.username} ?`}
             className={sh.shareInput}
             ref={descRef}
           ></input>

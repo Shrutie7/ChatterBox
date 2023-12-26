@@ -11,6 +11,7 @@
     /* even if we scroll the page this stays on top all times */
 z-index: 9999;
 
+
 }
 
 /* divide topbarContainer into 12 parts by giving flex as 3 of them will be left ,5 of them will be center ,4 of them will be right  */
@@ -27,6 +28,7 @@ z-index: 9999;
 }
 .topbarCenter{
     flex:5;
+    position:relative
    
 }
 .searchbar{
@@ -40,7 +42,8 @@ z-index: 9999;
 .searchIcon{
     font-size: 20px !important;
     /* bcoz search is material icon give important */
-    margin-left: 10px ;
+    margin-right: 10px ;
+    cursor:pointer
 }
 .searchinput{
     border:none;
@@ -56,6 +59,7 @@ z-index: 9999;
     align-items: center;
     justify-content: space-around;
     color: #fff;
+    position: relative;
     /* so first and last elements are at 2 extreme ends */
     
 }
@@ -101,4 +105,7 @@ z-index: 9999;
 
     /* so image will cover whole of screen  */
 cursor: pointer;
+}
+.username{
+    margin-left:-30px
 }

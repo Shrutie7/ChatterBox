@@ -1,0 +1,24 @@
+.main{
+    position:absolute;
+    top:40px;
+    left:390px;
+    /* height:300px; */
+    min-width: 608px;
+
+    
+border-bottom-left-radius: 20px;
+border-bottom-right-radius: 20px;
+    background-color: rgb(212, 206, 206);
+}
+.usercontainer{
+ 
+ 
+    /* overflow-y: auto; */
+    /* width:400px;  */
+    display: flex;
+    flex-direction: column;
+    padding:10px;
+
+    
+
+}
