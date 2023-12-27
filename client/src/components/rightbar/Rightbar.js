@@ -35,20 +35,26 @@ function Rightbar({ user }) {
   }
  const [followClick, setFollowclick] = useState(isGetFollowed);
 
+ const getFriends = async () => {
+  if (currentUser?._id) {
+    try {
+      const friendList = await axios.get("/users/friends/" + currentUser._id);
+      console.log(friendList.data);
+      let fdata = [...friendList.data];
+      let arr = [];
+      fdata?.forEach((fr) => {
+        arr.push(fr._id);
+      });
+      setFriends(friendList.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+};
+useEffect(() => {
 
-  useEffect(() => {
-    const getFriends = async()=>{
-      if(user?._id){
-        try {
-        const friendList = await axios.get("/users/friends/"+ user._id);
-        setFriends(friendList.data);
-      } catch (err) {
-        console.log(err);
-      }
-      }
-  };
-    getFriends();
-  }, [user]);
+  getFriends();
+}, []);
 
 
   const followHandler = async () => {
@@ -97,8 +103,12 @@ function Rightbar({ user }) {
   const ProfileRightbar = () => {
     return (
       <>
+      {console.log(user,currentUser)}
         {user.username !== currentUser?.username ? (
           <button className={rb.rightbarFollowButton} onClick={followHandler}>
+           
+           
+           
             {!followClick ? "Follow" : "Unfollow"}
             {!followClick ? <Add /> : <Remove />}
           </button>
@@ -129,6 +139,7 @@ function Rightbar({ user }) {
 
         <h4 className={rb.rightbarTitle}>User Friends</h4>
         <div className={rb.rightbarFollowings}>
+        {console.log(friends)}
           {friends.map((friend) => (
             <Link
               to={"/profile/" + friend.username}
