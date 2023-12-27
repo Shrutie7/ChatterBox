@@ -11,16 +11,23 @@ function CloseFriend() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [usersList, setusersList] = useState([]);
   const initialized = useRef(false);
+  const [Friends, setFriends] = useState([]);
+  const [Friendsid, setFriendsid] = useState([]);
   const getUsersList = async () => {
     const res = await axios.get("/users/all/" + user.username);
     console.log(res);
     setusersList([...res.data]);
   };
-  const isGetFollowed = async(userz)=>{
-    if(userz?._id){
-    return await currentUser.followings.includes(userz?._id)
+  const [followflag, setfollowflag] = useState(false);
+
+  console.log(currentUser?.followings);
+  const isGetFollowed = (userz) => {
+    if (userz?._id) {
+      // console.log(currentUser.followings.includes(userz?._id))
+      return currentUser?.followings.includes(userz?._id);
     }
-  }
+  };
+
   const [followClick, setFollowclick] = useState(true);
   useEffect(() => {
     if (!initialized.current) {
@@ -28,12 +35,35 @@ function CloseFriend() {
       getUsersList();
     }
   }, []);
+  const getFriends = async () => {
+    if (user?._id) {
+      try {
+        const friendList = await axios.get("/users/friends/" + user._id);
+        console.log(friendList.data);
+        let fdata = [...friendList.data];
+        let arr = [];
+        fdata?.forEach((fr) => {
+          arr.push(fr._id);
+        });
+        setFriendsid([...arr])
+        setFriends(friendList.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+  useEffect(() => {
+
+    getFriends();
+  }, [user]);
   const handlefollow = async (userz) => {
     let flag = false;
-    if (userz?._id) {
-      flag = await currentUser.followings.includes(userz?._id);
-    }
-    setFollowclick(flag);
+    // if (userz?._id) {
+    //   flag =  currentUser.followings.includes(userz?._id);
+    // }
+    // setFollowclick(flag);
+    flag = Friendsid.includes(userz?._id)
+    getFriends();
 
     try {
       if (flag) {
@@ -41,11 +71,17 @@ function CloseFriend() {
           userId: currentUser?._id,
         });
         dispatch({ type: "UNFOLLOW", payload: user?._id });
+        getFriends()
+        setfollowflag(false);
       } else {
         await axios.put(`/users/${userz?._id}/follow`, {
           userId: currentUser?._id,
         });
+
         dispatch({ type: "FOLLOW", payload: user?._id });
+        getFriends()
+        setfollowflag(true);
+     
       }
     } catch (error) {
       console.log(error);
@@ -69,8 +105,12 @@ function CloseFriend() {
           <div className={cf.btncon}>
             <button className={cf.btn} onClick={() => handlefollow(userz)}>
               {" "}
-              {isGetFollowed(userz) ? "Follow" : "Unfollow"}
-              {isGetFollowed(userz) ? <Add /> : <Remove />}
+              {/* {isGetFollowed(userz) ? "UnFollow" : "Follow"}
+              {isGetFollowed(userz) ? <Remove /> : <Add />} */}
+
+              {
+                Friendsid.includes(userz?._id) ?"Unfollow":"Follow"
+              }
             </button>
           </div>
         </li>

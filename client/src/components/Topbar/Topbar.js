@@ -57,7 +57,7 @@ function Topbar() {
     <div className={tp.topbarContainer}>
       <div className={tp.topbarLeft}>
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className={tp.logo}>ShruSocial</span>
+          <span className={tp.logo}>ChatterBox</span>
         </Link>
       </div>
       <div className={tp.topbarCenter}>
