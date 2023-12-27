@@ -1,5 +1,6 @@
 import React from 'react'
 import on from "./Online.module.css"
+import noAvatar from "../closeFriend/noAvatar.png"
 
 function Online({user}) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -9,7 +10,7 @@ function Online({user}) {
             <div className={on.rightbarProfileImgContainer}>
               <img
                 alt=""
-                src={PF+user.profilePicture}
+                src={user.profilePicture ? PF+user.profilePicture : noAvatar}
                 className={on.rightbarProfileImg}
               />
               <span className={on.rightbarOnline}></span>

@@ -92,7 +92,7 @@ useEffect(() => {
         <img className={rb.rightbarAd} src="assets/ad.png" alt="" />
         <h4 className={rb.rightbarTitle}>Online Friends</h4>
         <ul className={rb.rightbarFriendList}>
-          {Users.map((u) => (
+          {friends.map((u) => (
             <Online key={u.id} user={u}></Online>
           ))}
         </ul>
