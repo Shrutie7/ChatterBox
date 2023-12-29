@@ -26,7 +26,16 @@ function Feed({ username }) {
    
   }, [username,user?._id,reload]);
 
+  const [usersList, setusersList] = useState([]);
 
+  const getUsersList = async () => {
+    const res = await axios.get("/users/all/" + user?.username);
+    console.log(res);
+    setusersList([...res.data]);
+  };
+useEffect(()=>{
+  getUsersList()
+},[user?._id])
   
   return (
     <div className={fd.feed}>
@@ -34,7 +43,7 @@ function Feed({ username }) {
         {(username===user?.username)|| !username ? <Share setreload={setreload}></Share>:<></>}
         {/* {console.log(posts)} */}
         {posts.map((d) => (
-          <Post key={d._id} post={d} />
+          <Post key={d._id} post={d} userdata={usersList}/>
         ))}
        
       </div>

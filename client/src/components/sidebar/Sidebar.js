@@ -13,7 +13,9 @@ import {
 } from "@material-ui/icons";
 import { Users } from "../../data/dummyData";
 import CloseFriend from "../closeFriend/CloseFriend";
+import { useNavigate } from "react-router";
 function Sidebar() {
+  const nav = useNavigate();
   return (
     <div className={sb.sidebar}>
       <div className={sb.sidebarWrapper}>
@@ -22,7 +24,7 @@ function Sidebar() {
             <RssFeed className={sb.sidebarIcon} />
             <span className={sb.sidebarListItemText}>Feed</span>
           </li>
-          <li className={sb.sidebarListItem}>
+          <li className={sb.sidebarListItem} onClick={()=>nav("/messenger")}>
             <ChatSharp className={sb.sidebarIcon} />
             <span className={sb.sidebarListItemText}>Chats</span>
           </li>

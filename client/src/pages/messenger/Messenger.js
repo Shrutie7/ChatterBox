@@ -1,6 +1,7 @@
 import React from "react";
 import Topbar from "../../components/Topbar/Topbar";
 import ms from "./Messenger.module.css";
+import Conversation from "../../components/conversation/Conversation";
 
 function Messenger() {
   return (
@@ -9,7 +10,18 @@ function Messenger() {
       <div className={ms.messenger}>
         <div className={ms.chatMenu}>
           <div className={ms.chatMenuWrapper}>
-            menu
+            <input
+            placeholder="Search for friends"
+            className={ms.chatMenuInput}
+
+            />
+            <Conversation/>
+            <Conversation/>
+            <Conversation/>
+            <Conversation/>
+            <Conversation/>
+            <Conversation/>
+            <Conversation/>
           </div>
         </div>
         <div className={ms.chatBox}>
@@ -17,8 +29,9 @@ function Messenger() {
             box
           </div>
         </div>
-        <div className={ms.chatOnline}></div>
+        <div className={ms.chatOnline}>
         <div className={ms.chatOnlineWrapper}>online</div>
+        </div>
       </div>
     </>
   );

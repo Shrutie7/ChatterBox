@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { Modal, Overlay, Popover, Tooltip } from "react-bootstrap";
 
-function Post({ post }) {
+function Post({ post,userdata }) {
   // console.log(post)
   // const user = Users.filter((d)=>d.id===1)
   // console.log(user[0].username)
@@ -60,6 +60,28 @@ function Post({ post }) {
   //   fetchUser();
   // }, [post.userId]);
 
+
+const getpostusername = () =>{
+  let str = "";
+
+  if(post.userId === currentUser?._id)
+  {
+    str = currentUser?.username
+  }
+
+  else{
+    userdata.forEach((ele)=>{
+      console.log(ele)
+      if(ele?._id === post.userId)
+      {
+        str = ele?.username
+      }
+    })
+  }
+
+  return str;
+
+}
   const likehandler = () => {
     try {
       const res = axios.put("/posts/" + post._id + "/like", {
@@ -137,7 +159,7 @@ function Post({ post }) {
                 className={po.postProfileImg}
               />
             </Link>
-            <span className={po.postUsername}>{post.userId !== currentUser?._id?post?.userName:currentUser?.username}</span>
+            <span className={po.postUsername}>{getpostusername()}</span>
             <span className={po.postDate}>{format(post.createdAt)}</span>
           </div>
           <div className={po.postTopRight}>

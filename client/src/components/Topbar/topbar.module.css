@@ -7,10 +7,10 @@
     /* center items vertically with align-items */
     position: sticky;
     top:0;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     /* even if we scroll the page this stays on top all times */
 z-index: 9999;
-
+margin-top:-12px !important;
 
 }
 
