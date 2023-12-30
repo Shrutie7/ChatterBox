@@ -53,13 +53,34 @@ router.delete("/:id", async (req, res) => {
 });
 // get a user
 
-router.get("/:id", async (req, res) => {
+// router.get("/:id", async (req, res) => {
+//   try {
+//     const user = await User.findById(req.params.id);
+//     const { password, updatedAt, ...other } = user._doc;
+//     res.status(200).json(other);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+
+router.get("/", async (req, res) => {
+  const userId = req.query.userId;
+  const username = req.query.username;
   try {
-    const user = await User.findById(req.params.id);
+    // if we pass in url userId it will call 1st one if we pass in url username it will call 2nd and assign to user
+
+    const user = userId
+      ? await User.findById(userId)
+      : await User.findOne({ username: username });
+    // if user is found on basis of id in database return back the user
+    // but this will return user with all the properties to not send some properties back
+    // user._doc is document which carries all object now while we get user by id there will be no password/updatedAt
+
     const { password, updatedAt, ...other } = user._doc;
-    res.status(200).json(other);
-  } catch (err) {
-    res.status(500).json(err);
+    return res.status(200).json(other);
+  } catch (error) {
+    return res.status(500).json(error);
   }
 });
 

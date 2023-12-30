@@ -9,6 +9,8 @@ const multer = require("multer")
 const userRoute = require("./routes/users")
 const authRoute = require("./routes/auth")
 const postRoute = require("./routes/posts")
+const conversationRoute = require("./routes/conversations")
+const messageRoute = require("./routes/messages")
 const path = require("path")
 // to use dotenv
 dotenv.config();
@@ -53,9 +55,11 @@ app.post("/api/upload",upload.single("file"),(req,res)=>{
     }
 })
 // whenever we go to that address its gonna run this router
-app.use("/api/users" , userRoute)
-app.use("/api/auth", authRoute)
-app.use("/api/posts",postRoute)
+app.use("/api/users" , userRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/posts",postRoute);
+app.use("/api/conversations", conversationRoute);
+app.use("/api/messages",messageRoute);
 
 
 // means our app is listening on port 8800 here our server code is running
