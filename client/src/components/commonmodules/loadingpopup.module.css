@@ -1,0 +1,17 @@
+.spinbody {
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "Segoe UI";
+  /* text-align: center; */
+  padding-left: 5px;
+}
+
+.modalspinbody {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* height:600px; */
+}
+ 

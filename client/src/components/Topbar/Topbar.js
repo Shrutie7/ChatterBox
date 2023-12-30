@@ -14,16 +14,17 @@ function Topbar() {
   console.log(user);
   const nav = useNavigate();
   const [inp, setinp] = useState();
-  const [togglebtn, settogglebtn] = useState("HomePage");
+  const [togglebtn, settogglebtn] = useState(false);
   const [navpath, setnavpath] = useState("/");
   const [usersList, setusersList] = useState("");
 
   const handletoggle = () => {
-    if (togglebtn === "HomePage") {
-      settogglebtn("Timeline");
+    settogglebtn(!togglebtn)
+    if (togglebtn) {
+   
       nav(`/profile/${user?.username}`);
     } else {
-      settogglebtn("HomePage");
+     
       nav("/");
     }
   };
@@ -78,17 +79,15 @@ function Topbar() {
       </div>
       <div className={tp.topbarRight}>
         <div className={tp.topbarLinks}>
-          {/* <Link to={togglebtn === "HomePage"? navpath : `/profile/${user?.username}` } style={{ textDecoration: "none" }}> */}
-          <span className={tp.topbarLink} onClick={() => handletoggle()}>
-            {togglebtn === "HomePage" ? "HomePage" : "Timeline"}
-          </span>
-          {/* </Link> */}
-          {/* <Link
+          <Link to={"/"} style={{ textDecoration: "none" }}>
+          <span className={tp.topbarLink}>HomePage</span>
+          </Link>
+          <Link
             to={`/profile/${user?.username}`}
             style={{ textDecoration: "none" }}
           >
             <span className={tp.topbarLink}>Timeline</span>
-          </Link> */}
+          </Link>
         </div>
         <div className={tp.topbarIcons}>
           <div className={tp.topbarIconItem}>

@@ -114,3 +114,6 @@
     outline-color: var(--color1);
     outline-style: solid;
   }
+  .toastposition {
+    top: 3.3rem !important;
+  }

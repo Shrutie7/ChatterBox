@@ -5,6 +5,8 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import noavatar from "../closeFriend/noAvatar.png";
 import { Add, Remove } from "@material-ui/icons";
+import Toastify from "../commonmodules/Toastify";
+import { ToastContainer, toast } from "react-toastify";
 function CloseFriend() {
   const { user } = useContext(AuthContext);
   const { user: currentUser, dispatch } = useContext(AuthContext);
@@ -73,6 +75,17 @@ function CloseFriend() {
         dispatch({ type: "UNFOLLOW", payload: user?._id });
         getFriends()
         setfollowflag(false);
+        toast("🦄"+ userz?.username + " is unfollowed!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          })
+      
       } else {
         await axios.put(`/users/${userz?._id}/follow`, {
           userId: currentUser?._id,
@@ -81,6 +94,16 @@ function CloseFriend() {
         dispatch({ type: "FOLLOW", payload: user?._id });
         getFriends()
         setfollowflag(true);
+        toast("🦄"+ userz?.username + " is followed!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          })
      
       }
     } catch (error) {
@@ -103,7 +126,7 @@ function CloseFriend() {
             <div className={cf.sidebarFriendName}>{userz.username}</div>
           </div>
           <div className={cf.btncon}>
-            <button className={cf.btn} onClick={() => handlefollow(userz)}>
+            <button className={cf.btn} onClick={() => {handlefollow(userz);setFollowclick(true)}}>
               {" "}
               {/* {isGetFollowed(userz) ? "UnFollow" : "Follow"}
               {isGetFollowed(userz) ? <Remove /> : <Add />} */}
@@ -116,7 +139,19 @@ function CloseFriend() {
         </li>
       ))}
 
-      {/* </li> */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        className={cf.toastposition}
+      />
     </div>
   );
 }

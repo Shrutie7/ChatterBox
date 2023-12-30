@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { Modal, Overlay, Popover, Tooltip } from "react-bootstrap";
 
+
 function Post({ post,userdata }) {
   // console.log(post)
   // const user = Users.filter((d)=>d.id===1)
@@ -144,6 +145,7 @@ const getpostusername = () =>{
 
   return (
     <div className={po.post}>
+    
     {/* {console.log(currentUser)} */}
       <div className={po.postWrapper}>
         <div className={po.postTop}>
@@ -198,7 +200,7 @@ const getpostusername = () =>{
         </div>
       </div>
       {showovr && (
-        <Overlay target={htmlTag} show={showovr} placement={"left"}>
+        <Overlay target={htmlTag} show={showovr} placement={"left"} rootClose={true}>
           {(props) => {
             return (
               <Popover {...props}>
@@ -227,6 +229,9 @@ const getpostusername = () =>{
           }}
         </Overlay>
       )}
+
+
+
     </div>
   );
 }

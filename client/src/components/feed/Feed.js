@@ -3,13 +3,16 @@ import Share from "../share/Share";
 import fd from "./Feed.module.css";
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import LoadingPopup from "../commonmodules/Loading";
 import { AuthContext } from "../../context/AuthContext";
+import Toastify from "../commonmodules/Toastify";
 function Feed({ username }) {
   const [posts, setPosts] = useState([]);
   const { user } = useContext(AuthContext);
   const[reload,setreload]=useState(false)
-
+  let [loading, setLoading] = useState(false);
   const fetchPosts = async () => {
+    setLoading(true)
     const res = username
       ? await axios.get("/posts/profile/" + username)
       : await axios.get("/posts/timeline/"+user?._id);
@@ -18,6 +21,7 @@ function Feed({ username }) {
       setPosts(res.data.sort((post1,post2)=>{
         return new Date(post2.createdAt)-new Date(post1.createdAt)
       }))
+      setLoading(false)
   };
 
   useEffect(() => {
@@ -47,6 +51,11 @@ useEffect(()=>{
         ))}
        
       </div>
+
+      {loading && (
+        <LoadingPopup state={loading} message="Loading... Please Wait" />
+      )}
+
     </div>
   );
 }

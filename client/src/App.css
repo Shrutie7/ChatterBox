@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+.modal-content {
+  border-radius: 30px !important;
+  background-color: white;
+}
+
+.modal-body{
+  padding:8px;
+}
+
+.Toastify__toast-container--top-right {
+  bottom: 11em;
+  right: 1.5em;
+}

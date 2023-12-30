@@ -16,7 +16,7 @@ margin-top:-12px !important;
 
 /* divide topbarContainer into 12 parts by giving flex as 3 of them will be left ,5 of them will be center ,4 of them will be right  */
 .topbarLeft{
-    flex:3;
+    flex:2;
 
 }
 .logo{
@@ -27,7 +27,7 @@ margin-top:-12px !important;
     cursor: pointer;
 }
 .topbarCenter{
-    flex:5;
+    flex:4;
     position:relative
    
 }

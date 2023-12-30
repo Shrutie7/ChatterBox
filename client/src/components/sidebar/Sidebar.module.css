@@ -35,7 +35,14 @@ background-color: #f1f1f1;
   align-items: center;
   margin-bottom: 20px;
   cursor: pointer;
+  height:30px;
 }
+.sidebarListItem:hover{
+background-color: #1877f2;
+text-decoration: underline;
+color: #f1f1f1;
+}
+
 .sidebarIcon {
   margin-right: 15px;
 }
