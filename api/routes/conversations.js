@@ -50,6 +50,22 @@ router.get('/:userId',async(req, res) => {
 
 })
 
+// get conv includes two userid
+
+router.get('/find/:firstUserId/:secondUserId',async(req,res)=>{
+
+  try {
+    // look into members for all elements should include firstUser and secondUser both order not imp.
+    const conversation =await Conversation.findOne({
+      members:{$all :[req.params.firstUserId,req.params.secondUserId]}
+    }) 
+    res.status(200).json(conversation)
+  } catch (error) {
+    res.status(500).json(error)
+    
+  }
+})
+
 
 
 
