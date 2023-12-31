@@ -1,18 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import co from "./ChatOnline.module.css";
+import axios from "axios";
+import noAvatar from "../closeFriend/noAvatar.png"
 
-const ChatOnline = () => {
+const ChatOnline = ({ onlineUsers, currentId, setcurrentchat }) => {
+  const [friends, setfriends] = useState([]);
+  const [onlinefriends, setonlinefriends] = useState([]);
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const getFriends = async () => {
+    try {
+      const res = await axios.get("/users/friends/" + currentId);
+      setfriends([...res.data]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getFriends();
+  }, [currentId]);
+
+  console.log(friends)
+
+  useEffect(()=>{
+
+    setonlinefriends(friends.filter((friend)=>onlineUsers.includes(friend._id)))
+  },[onlineUsers,friends])
   return (
     <div className={co.chatOnline}>
-      <div className={co.chatOnlineFriend}>
+    {
+      onlinefriends.map((o)=>(
+        <div className={co.chatOnlineFriend}>
         <div className={co.chatOnlineImgContainer}>
-          <img className={co.chatOnlineImg} src='https://img.freepik.com/free-photo/beautiful-girl-stands-park_8353-5084.jpg?size=626&ext=jpg&ga=GA1.1.1546980028.1703203200&semt=ais' alt="" />
+          <img
+            className={co.chatOnlineImg}
+            src={o?.profilePicture ? PF+o.profilePicture :noAvatar}
+            alt=""
+          />
           <div className={co.chatOnlineBadge}></div>
         </div>
-        <span className={co.ChatOnlineName}> 
-John Doe
-        </span>
+        <span className={co.ChatOnlineName}>{o.username}</span>
       </div>
+      ))
+    }
+
     </div>
   );
 };

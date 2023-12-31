@@ -28,7 +28,7 @@ getUser(friendId)
   return (
     <div className={conv.conversation}>
 
-      <img className={conv.conversationImg} src={user?.profilePicture ? user?.profilePicture :noAvatar}
+      <img className={conv.conversationImg} src={user?.profilePicture ?PF+ user?.profilePicture :noAvatar}
        alt=''/>
       <span className={conv.conversationName}>{user?.username}</span>
     </div>
