@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const dotenv = require("dotenv")
-const multer = require("multer")
+const multer = require("multer");
+const cors = require("cors");
 const userRoute = require("./routes/users")
 const authRoute = require("./routes/auth")
 const postRoute = require("./routes/posts")
@@ -14,6 +15,17 @@ const messageRoute = require("./routes/messages")
 const path = require("path")
 // to use dotenv
 dotenv.config();
+
+app.use(cors(
+    {
+        origin: ['https://chatter-box-tawny.vercel.app'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        credentials:true
+
+    }
+))
+
+
 
 // make mongodb connection
 // 1st param will be secret url! and in 3rd param pass as arror func which takes then catch or async await coz mongoose.prototype.connect() no longer accepts a callback
