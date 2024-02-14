@@ -6,7 +6,7 @@ import Profile from "./pages/profile/Profile";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Messenger from "./pages/messenger/Messenger";
-
+import "./style.scss";
 function App() {
   const { user } = useContext(AuthContext);
   return (
