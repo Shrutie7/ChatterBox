@@ -18,7 +18,7 @@ dotenv.config();
 
 app.use(cors(
     {
-        origin: ['https://chatter-box-tawny.vercel.app'],
+        origin: ['https://chatter-box-apis.vercel.app'],
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         credentials:true
 
