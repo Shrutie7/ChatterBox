@@ -29,14 +29,14 @@ app.use(cors(
 
 // make mongodb connection
 // 1st param will be secret url! and in 3rd param pass as arror func which takes then catch or async await coz mongoose.prototype.connect() no longer accepts a callback
-mongoose.connect('mongodb+srv://mongo:Eastside07@@cluster0.xel3a66.mongodb.net/?retryWrites=true&w=majority', {useNewUrlParser:true,useUnifiedTopology: true});
+// mongoose.connect('mongodb+srv://mongo:Eastside07@@cluster0.xel3a66.mongodb.net/?retryWrites=true&w=majority', {useNewUrlParser:true,useUnifiedTopology: true});
 
-//  mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
-//     console.log("connected to mongodb");
+ mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
+    console.log("connected to mongodb");
 
-// }).catch((err)=>{
-//     console.log(err);
-// })
+}).catch((err)=>{
+    console.log(err);
+})
 
 app.use("/images",express.static(path.join(__dirname,"public/images")))
 
